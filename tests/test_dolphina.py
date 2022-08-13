@@ -14,10 +14,10 @@ def test_get_random_dolphin_image(client, requests_mock):
     target_image_url = "https://unsplash.com/photos/rTJPbmm-160/download?ixid=MnwzNTQ2MTN8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NjAyNjg3Nzc"
 
     requests_mock.get(UNSPLASH_URL, text=mock_unsplash_response)
-    requests_mock.get(target_image_url, text="dummy text")
+    requests_mock.get(target_image_url, text="dummy bytes")
 
     resp = client.get('/picture')
 
     assert resp.status_code == 200
-    assert resp.text == "dummy text"
+    assert resp.text == "dummy bytes"
     assert resp.mimetype == 'image/jpeg'
